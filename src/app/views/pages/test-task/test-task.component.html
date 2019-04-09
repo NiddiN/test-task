@@ -1,3 +1,48 @@
-<p>
-  test-task works!
-</p>
+<div class="col-sm-8 stepper">
+	<mat-horizontal-stepper>
+		<mat-step>
+			<h1>Hi Sander!</h1>
+			<p>Vertel ons hoe we kunnen helpen door aan te geven wat jouw hofddoel is voor het gebruiken van Zollie</p>
+			<div class="welcome-step">
+					<div *ngFor="let thing of things"
+							 [ngClass]="{'active': isActive(thing.value),
+							 						 'welcome-step__block': !isActive(thing.value) === true}"
+							 (click)="setValue(thing.value)">
+						{{ thing.title }}
+					</div>
+			</div>
+			<div class="button-group">
+				<button mat-raised-button color="primary" matStepperNext>Velgende</button>
+			</div>
+		</mat-step>
+		<mat-step>
+			<!-- <div *ngFor="let thing of things"
+						[ngClass]="{'active': isActive(1),
+											'welcome-step__block': !isActive(1) === true}"
+						(click)="setValue(thing.value)">
+						Yes
+			</div>
+			<div *ngFor="let thing of things"
+						[ngClass]="{'active': isActive(1),
+											'welcome-step__block': !isActive(1) === true}"
+						(click)="setValue(thing.value)">
+						{{ thing.title }}
+			</div>
+			<button (click)="setSeller(true)">True!</button>
+			<button (click)="setSeller(false)">False!</button>
+			<button mat-raised-button color="primary" matStepperPrevious>Vorige</button>
+			<button mat-raised-button color="primary" matStepperNext>Velgende</button> -->
+		</mat-step>
+		<mat-step *ngIf="isSeller === false">
+			<p>False</p>
+		</mat-step>
+		<ng-container *ngIf="isSeller === true">
+			<mat-step>
+				<p>True</p>
+			</mat-step>
+			<mat-step>
+				<p>True again</p>
+			</mat-step>
+		</ng-container>
+	</mat-horizontal-stepper>
+</div>

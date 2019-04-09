@@ -3,7 +3,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 // Material Modules
-import { MatStepperModule } from '@angular/material';
+import {
+	MatStepperModule,
+	MatRadioModule,
+	MatButtonModule
+} from '@angular/material';
 // Core Module
 import { CoreModule } from '../../../core/core.module';
 // Test Task Component
@@ -23,6 +27,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 		]),
 		CoreModule,
 		MatStepperModule,
+		MatRadioModule,
+		MatButtonModule
 	],
 	declarations: [
 		TestTaskComponent
