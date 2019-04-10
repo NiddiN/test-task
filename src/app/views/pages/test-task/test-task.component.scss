@@ -1,6 +1,12 @@
 .stepper {
 	font-size: 16px;
 
+	.no-seller-form {
+		&__label {
+			height: 150px;
+		}
+	}
+
 	.radio-group {
 		display: flex;
 		flex-wrap: wrap;
