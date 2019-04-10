@@ -2,6 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 // Material Modules
 import {
 	MatStepperModule,
@@ -34,7 +35,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 		MatButtonModule,
 		MatInputModule,
 		MatFormFieldModule,
-		MatSelectModule
+		MatSelectModule,
+		ReactiveFormsModule,
+		FormsModule
 	],
 	declarations: [
 		TestTaskComponent

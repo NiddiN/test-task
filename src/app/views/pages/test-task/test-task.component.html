@@ -3,112 +3,160 @@
 		<!-- First step 'welcome' -->
 		<mat-step>
 			<h1>Hi Sander!</h1>
-			<p class="text-bold">Vertel ons hoe we kunnen helpen door aan te geven wat jouw hofddoel is voor het gebruiken van Zollie</p>
-			<form>
-				<div class="radio-group">
-				<ng-container *ngFor="let service of services; let i = index">
-					<input type="radio" [value]="service.value" [id]="'service' + i" name="service">
-					<label [for]="'service' + i">
-						{{ service.title }}
-					</label>
-				</ng-container>
-				</div>
-			</form>
+			<p class="text-bold">
+				Vertel ons hoe we kunnen helpen door aan te geven wat jouw hofddoel
+				is voor het gebruiken van Zollie
+			</p>
+			<div class="radio-group">
+			<ng-container *ngFor="let service of services; let i = index">
+				<input type="radio"
+							 [value]="service.value"
+							 [id]="'service' + i"
+							 name="service"
+							 [formControl]="serviceControl">
+				<label [for]="'service' + i">
+					{{ service.title }}
+				</label>
+			</ng-container>
+			</div>
 			<div class="button-group">
-				<button mat-raised-button color="primary" matStepperNext>Velgende</button>
+				<button mat-raised-button color="primary"
+								matStepperNext
+								[disabled]="isDisabled(serviceControl)">
+					Velgende
+				</button>
 			</div>
 		</mat-step>
 		<!-- Second step 'is seller?' -->
 		<mat-step>
 			<h1>Laten we elkaar beter leren kenne</h1>
 			<p class="text-bold">Ben je momenteel al een verkoper via bol.com?</p>
-			<form>
-				<div class="radio-group">
-					<input type="radio"
-								 value="1"
-								 id="seller1"
-								 name="seller">
-					<label for="seller1">
-						Ja, ik ben verkper via lol.com
-					</label>
-					<input type="radio"
-								 value="0"
-								 id="seller0"
-								 name="seller">
-					<label for="seller0">
-						Nee, ik ben (nog) geen verkoper via bol.com
-					</label>
-				</div>
-			</form>
+			<div class="radio-group">
+				<input type="radio"
+								value="1"
+								id="seller1"
+								[formControl]="sellerControl">
+				<label for="seller1">
+					Ja, ik ben verkper via lol.com
+				</label>
+				<input type="radio"
+								value="0"
+								id="seller0"
+								[formControl]="sellerControl">
+				<label for="seller0">
+					Nee, ik ben (nog) geen verkoper via bol.com
+				</label>
+			</div>
 			<div class="button-group">
-				<button mat-raised-button color="primary" matStepperPrevious>Vorige</button>
-				<button mat-raised-button color="primary" matStepperNext>Velgende</button>
+				<button mat-raised-button color="primary" matStepperPrevious>
+					Vorige
+				</button>
+				<button mat-raised-button color="primary"
+								matStepperNext
+								[disabled]="isDisabled(sellerControl)">
+					Velgende
+				</button>
 			</div>
 		</mat-step>
 		<!-- Third step 'no seller' -->
-		<mat-step>
+		<mat-step *ngIf="!isSeller()">
 			<h1>Zllie os er om jou te helpen!</h1>
-			<p class="text-bold">Om jou zo goed mogelijk te kunnen helpen, maken we graag kennis.</p>
+			<p class="text-bold">
+				Om jou zo goed mogelijk te kunnen helpen, maken we graag kennis.
+			</p>
 			<p class="text-bolder">Ik ben een:</p>
-			<form class="no-seller-step">
-				<div class="radio-group">
-					<ng-container *ngFor="let aboutCustomer of somethingAboutCustomer; let i = index">
-						<input type="radio" [value]="aboutCustomer.value" [id]="'aboutCustomer' + i" name="aboutCustomer">
-						<label class="no-seller-form__label" [for]="'aboutCustomer' + i">
-							{{ aboutCustomer.title }}
-						</label>
-					</ng-container>
-				</div>
-			</form>
+			<div class="radio-group">
+				<ng-container *ngFor="let characteristic of customerCharacteristics; let i = index">
+					<input type="radio"
+								 [value]="characteristic.value"
+								 [id]="'characteristic' + i"
+								 name="characteristic"
+								 [formControl]="characteristicControl">
+					<label class="no-seller-form__label" [for]="'characteristic' + i">
+						{{ characteristic.title }}
+					</label>
+				</ng-container>
+			</div>
 			<div class="button-group">
-				<button mat-raised-button color="primary" matStepperPrevious>Vorige</button>
-				<button mat-raised-button color="primary" matStepperNext>Velgende</button>
+				<button mat-raised-button color="primary" matStepperPrevious>
+					Vorige
+				</button>
+				<button mat-raised-button color="primary"
+								matStepperNext
+								[disabled]="isDisabled(characteristicControl)">
+					Velgende
+				</button>
 			</div>
 		</mat-step>
-		<!-- Third step 'seller' -->
-		<mat-step>
-			<h1>Super! Laten we Zollie afstemmen op jouw business.</h1>
-			<form class="business-form">
-				<mat-form-field class="form-field">
-					<input id="seller-number" type="text" matInput placeholder="Wat is je bol.com verkopersnummer?">
-				</mat-form-field>
-				<p class="text-bolder">Welk verkoopmodel pas je momenteel hoofdzakelijk</p>
-				<div class="radio-group">
-					<ng-container *ngFor="let model of salesModels; let i = index">
-						<input type="radio" [value]="model.value" [id]="'model' + i" name="model">
-						<label class="business-form__label" [for]="'model' + i">
-							{{ model.title }}
-						</label>
-					</ng-container>
+		<ng-container *ngIf="isSeller()">
+<!-- Third step 'seller' -->
+			<mat-step>
+				<h1>Super! Laten we Zollie afstemmen op jouw business.</h1>
+				<form class="business-form" [formGroup]="businessForm">
+					<mat-form-field class="form-field">
+						<input type="text"
+									 matInput
+									 placeholder="Wat is je bol.com verkopersnummer?"
+									 formControlName="sellerNumber">
+					</mat-form-field>
+					<p class="text-bolder">
+						Welk verkoopmodel pas je momenteel hoofdzakelijk
+					</p>
+					<div class="radio-group">
+						<ng-container *ngFor="let model of salesModels; let i = index">
+							<input type="radio"
+										 [value]="model.value"
+										 [id]="'model' + i"
+										 formControlName="salesModel">
+							<label class="business-form__label" [for]="'model' + i">
+								{{ model.title }}
+							</label>
+						</ng-container>
+					</div>
+					<p class="text-bolder">
+						Welke leveringsmethode gedruik je hoofdzajelijk?
+					</p>
+					<div class="radio-group">
+						<ng-container *ngFor="let method of deliveryMethods; let i = index">
+							<input type="radio"
+										 [value]="method.value"
+										 [id]="'method' + i"
+										 formControlName="deliveryMethod">
+							<label class="business-form__label" [for]="'method' + i">
+								{{ method.title }}
+							</label>
+						</ng-container>
+					</div>
+					<mat-form-field class="form-field">
+						<mat-select formControlName="productRange"
+												placeholder="Hoeveel producten verkoop je momenteel via bol.com?">
+							<mat-option *ngFor="let range of productRanges"
+													[value]="range.value">
+								{{ range.title }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+					<mat-form-field class="form-field">
+						<mat-select formControlName="monthlyRevenue"
+												placeholder="Wat is je geschatte maandelijkse omzet?">
+							<mat-option *ngFor="let revenue of monthlyRevenue"
+													[value]="revenue.value">
+								{{ revenue.title }}
+							</mat-option>
+						</mat-select>
+					</mat-form-field>
+				</form>
+				<div class="button-group">
+					<button mat-raised-button color="primary" matStepperPrevious>
+						Vorige
+					</button>
+					<button mat-raised-button color="primary"
+									matStepperNext
+									[disabled]="businessForm.invalid">
+						Velgende
+					</button>
 				</div>
-				<p class="text-bolder">Welke leveringsmethode gedruik je hoofdzajelijk?</p>
-				<div class="radio-group">
-					<ng-container *ngFor="let method of deliveryMethods; let i = index">
-						<input type="radio" [value]="method.value" [id]="'method' + i" name="method">
-						<label class="business-form__label" [for]="'method' + i">
-							{{ method.title }}
-						</label>
-					</ng-container>
-				</div>
-				<mat-form-field class="form-field">
-					<mat-select name="product-range" placeholder="Hoeveel producten verkoop je momenteel via bol.com?">
-						<mat-option  *ngFor="let range of productRanges" [value]="range.value">
-							{{ range.title }}
-						</mat-option>
-					</mat-select>
-				</mat-form-field>
-				<mat-form-field class="form-field">
-					<mat-select name="product-range" placeholder="Wat is je geschatte maandelijkse omzet?">
-						<mat-option  *ngFor="let revenue of monthlyRevenue" [value]="revenue.value">
-							{{ revenue.title }}
-						</mat-option>
-					</mat-select>
-				</mat-form-field>
-			</form>
-			<div class="button-group">
-				<button mat-raised-button color="primary" matStepperPrevious>Vorige</button>
-				<button mat-raised-button color="primary" matStepperNext>Velgende</button>
-			</div>
-		</mat-step>
+			</mat-step>
+		</ng-container>
 	</mat-horizontal-stepper>
 </div>
