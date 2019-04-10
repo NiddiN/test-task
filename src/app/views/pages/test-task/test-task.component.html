@@ -23,7 +23,7 @@
 			<div class="button-group">
 				<button mat-raised-button color="primary"
 								matStepperNext
-								[disabled]="isDisabled(serviceControl)">
+								[disabled]="isDisabled(serviceControl.value)">
 					Velgende
 				</button>
 			</div>
@@ -55,7 +55,7 @@
 				</button>
 				<button mat-raised-button color="primary"
 								matStepperNext
-								[disabled]="isDisabled(sellerControl)">
+								[disabled]="isDisabled(sellerControl.value)">
 					Velgende
 				</button>
 			</div>
@@ -86,7 +86,7 @@
 				</button>
 				<button mat-raised-button color="primary"
 								matStepperNext
-								[disabled]="isDisabled(characteristicControl)">
+								[disabled]="isDisabled(characteristicControl.value)">
 					Velgende
 				</button>
 			</div>

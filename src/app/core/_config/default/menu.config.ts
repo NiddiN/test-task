@@ -54,7 +54,7 @@ export class MenuConfig {
 				// 	page: 'test-task'
 				// },
 				{
-					title: 'Custom Link',
+					title: 'Test Task',
 					root: true,
 					icon: 'flaticon2-link',
 					page: 'test-task',
