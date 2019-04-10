@@ -50,6 +50,9 @@ export class TestTaskComponent implements OnInit {
 	}
 
 	public isSeller(): boolean {
+		if (this.sellerControl.value === '') {
+			return null;
+		}
 		return !!this.sellerControl.value &&
 					 this.sellerControl.value === '1';
 	}

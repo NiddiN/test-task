@@ -2,6 +2,7 @@
 	<mat-horizontal-stepper>
 		<!-- First step 'welcome' -->
 		<mat-step>
+			<ng-template matStepLabel>Choose service</ng-template>
 			<h1>Hi Sander!</h1>
 			<p class="text-bold">
 				Vertel ons hoe we kunnen helpen door aan te geven wat jouw hofddoel
@@ -29,6 +30,7 @@
 		</mat-step>
 		<!-- Second step 'is seller?' -->
 		<mat-step>
+			<ng-template matStepLabel>Are you seller?</ng-template>
 			<h1>Laten we elkaar beter leren kenne</h1>
 			<p class="text-bold">Ben je momenteel al een verkoper via bol.com?</p>
 			<div class="radio-group">
@@ -59,7 +61,8 @@
 			</div>
 		</mat-step>
 		<!-- Third step 'no seller' -->
-		<mat-step *ngIf="!isSeller()">
+		<mat-step *ngIf="isSeller() === false">
+			<ng-template matStepLabel>Choice you characteristic</ng-template>
 			<h1>Zllie os er om jou te helpen!</h1>
 			<p class="text-bold">
 				Om jou zo goed mogelijk te kunnen helpen, maken we graag kennis.
@@ -88,9 +91,10 @@
 				</button>
 			</div>
 		</mat-step>
-		<ng-container *ngIf="isSeller()">
+		<ng-container *ngIf="isSeller() === true">
 <!-- Third step 'seller' -->
 			<mat-step>
+				<ng-template matStepLabel>About your business</ng-template>
 				<h1>Super! Laten we Zollie afstemmen op jouw business.</h1>
 				<form class="business-form" [formGroup]="businessForm">
 					<mat-form-field class="form-field">
@@ -159,6 +163,7 @@
 			</mat-step>
 			<!-- Fifth step 'last step for seller' -->
 			<mat-step>
+				<ng-template matStepLabel>Lnking API</ng-template>
 				<h1>Nog betere data door te koppelen</h1>
 				<p>
 					Door je verkopersaccount van bol.com te koppelen met Zolie, is het
@@ -175,21 +180,28 @@
 									 placeholder="Bol.com verkopersnummer"
 									 formControlName="sellerNumber">
 					</mat-form-field>
-					<mat-icon>help</mat-icon>
+					<mat-icon matTooltip="Bol.com verkopersnummer"
+										matTooltipPosition="after">
+						help
+					</mat-icon>
 					<mat-form-field class="form-field">
 						<input type="text"
 									 matInput
 									 placeholder="Public key"
 									 formControlName="publicKey">
 					</mat-form-field>
-					<mat-icon>help</mat-icon>
+					<mat-icon matTooltip="Public key" matTooltipPosition="after">
+						help
+					</mat-icon>
 					<mat-form-field class="form-field">
 						<input type="text"
 									 matInput
 									 placeholder="Private key"
 									 formControlName="privateKey">
 					</mat-form-field>
-					<mat-icon>help</mat-icon>
+					<mat-icon matTooltip="Private key" matTooltipPosition="after">
+							help
+					</mat-icon>
 					<div>
 						<mat-radio-group class="form-field" formControlName="agree">
 							<mat-radio-button value="1">
