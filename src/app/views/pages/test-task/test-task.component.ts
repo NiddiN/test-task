@@ -33,6 +33,12 @@ export class TestTaskComponent implements OnInit {
 		productRange: new FormControl('', [Validators.required]),
 		monthlyRevenue: new FormControl('', [Validators.required])
 	});
+	public linkingForm = new FormGroup({
+		sellerNumber: new FormControl('', [Validators.required]),
+		publicKey: new FormControl('', [Validators.required]),
+		privateKey: new FormControl('', [Validators.required]),
+		agree: new FormControl('', [Validators.required])
+	});
 
   constructor() { }
 

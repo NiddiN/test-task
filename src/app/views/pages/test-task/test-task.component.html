@@ -157,6 +157,61 @@
 					</button>
 				</div>
 			</mat-step>
+			<!-- Fifth step 'last step for seller' -->
+			<mat-step>
+				<h1>Nog betere data door te koppelen</h1>
+				<p>
+					Door je verkopersaccount van bol.com te koppelen met Zolie, is het
+					mogelijk om relevante updates te ontvaggen omtrent jouw assortiment,
+					voorraad en je concurrentie. Om je bol.com verkopersaccont te koppelen
+					met Zollie, dien je onderstaande velden in te vullen. Weet je niet
+					waar je de public en private key kunt vinden, klik dan op de
+					braagtekens voor meer uitleg.
+				</p>
+				<form class="linking-form" [formGroup]="linkingForm">
+					<mat-form-field class="form-field">
+						<input type="text"
+									 matInput
+									 placeholder="Bol.com verkopersnummer"
+									 formControlName="sellerNumber">
+					</mat-form-field>
+					<mat-icon>help</mat-icon>
+					<mat-form-field class="form-field">
+						<input type="text"
+									 matInput
+									 placeholder="Public key"
+									 formControlName="publicKey">
+					</mat-form-field>
+					<mat-icon>help</mat-icon>
+					<mat-form-field class="form-field">
+						<input type="text"
+									 matInput
+									 placeholder="Private key"
+									 formControlName="privateKey">
+					</mat-form-field>
+					<mat-icon>help</mat-icon>
+					<div>
+						<mat-radio-group class="form-field" formControlName="agree">
+							<mat-radio-button value="1">
+							</mat-radio-button>
+							<span>
+								Door het invullen van mijn verkopersnummer, public key en
+								private key, ga ik akkoord mer het berweren van mijn dara
+								volgens de <b>koppenlingsvoorwaarden</b> van Zollie
+							</span>
+						</mat-radio-group>
+					</div>
+				</form>
+				<div class="button-group">
+					<button mat-raised-button color="primary" matStepperNext>
+						Later koppelen
+					</button>
+					<button mat-raised-button color="primary"
+									[disabled]="linkingForm.invalid">
+						Koppelen
+					</button>
+					</div>
+			</mat-step>
 		</ng-container>
 	</mat-horizontal-stepper>
 </div>

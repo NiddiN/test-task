@@ -1,9 +1,13 @@
 .stepper {
 	font-size: 16px;
 
-	.business-form {
+	.business-form, .linking-form {
 		.form-field {
-			width: 100%;
+			width: 80%;
+		}
+
+		.toolpit {
+			cursor: pointer;
 		}
 	}
 

@@ -11,6 +11,8 @@ import {
 	MatInputModule,
 	MatFormFieldModule,
 	MatSelectModule,
+	MatIconModule,
+	MatTooltipModule,
 } from '@angular/material';
 // Core Module
 import { CoreModule } from '../../../core/core.module';
@@ -36,6 +38,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 		MatInputModule,
 		MatFormFieldModule,
 		MatSelectModule,
+		MatIconModule,
+		MatTooltipModule,
 		ReactiveFormsModule,
 		FormsModule
 	],
