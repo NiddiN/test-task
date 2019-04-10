@@ -6,7 +6,10 @@ import { CommonModule } from '@angular/common';
 import {
 	MatStepperModule,
 	MatRadioModule,
-	MatButtonModule
+	MatButtonModule,
+	MatInputModule,
+	MatFormFieldModule,
+	MatSelectModule,
 } from '@angular/material';
 // Core Module
 import { CoreModule } from '../../../core/core.module';
@@ -28,7 +31,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 		CoreModule,
 		MatStepperModule,
 		MatRadioModule,
-		MatButtonModule
+		MatButtonModule,
+		MatInputModule,
+		MatFormFieldModule,
+		MatSelectModule
 	],
 	declarations: [
 		TestTaskComponent

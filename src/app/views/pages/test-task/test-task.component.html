@@ -2,47 +2,46 @@
 	<mat-horizontal-stepper>
 		<mat-step>
 			<h1>Hi Sander!</h1>
-			<p>Vertel ons hoe we kunnen helpen door aan te geven wat jouw hofddoel is voor het gebruiken van Zollie</p>
-			<div class="welcome-step">
-					<div *ngFor="let thing of things"
-							 [ngClass]="{'active': isActive(thing.value),
-							 						 'welcome-step__block': !isActive(thing.value) === true}"
-							 (click)="setValue(thing.value)">
-						{{ thing.title }}
-					</div>
-			</div>
+			<p class="text-bold">Vertel ons hoe we kunnen helpen door aan te geven wat jouw hofddoel is voor het gebruiken van Zollie</p>
+			<form>
+				<div class="radio-group">
+				<ng-container *ngFor="let service of services; let i = index">
+					<input type="radio" [value]="service.value" [id]="'service' + i" name="service">
+					<label [for]="'service' + i">
+						{{ service.title }}
+					</label>
+				</ng-container>
+				</div>
+			</form>
 			<div class="button-group">
 				<button mat-raised-button color="primary" matStepperNext>Velgende</button>
 			</div>
 		</mat-step>
 		<mat-step>
-			<!-- <div *ngFor="let thing of things"
-						[ngClass]="{'active': isActive(1),
-											'welcome-step__block': !isActive(1) === true}"
-						(click)="setValue(thing.value)">
-						Yes
+			<h1>Laten we elkaar beter leren kenne</h1>
+			<p class="text-bold">Ben je momenteel al een verkoper via bol.com?</p>
+			<form>
+				<div class="radio-group">
+					<input type="radio"
+								 value="1"
+								 id="seller1"
+								 name="seller">
+					<label for="seller1">
+						Ja, ik ben verkper via lol.com
+					</label>
+					<input type="radio"
+								 value="0"
+								 id="seller0"
+								 name="seller">
+					<label for="seller0">
+						Nee, ik ben (nog) geen verkoper via bol.com
+					</label>
+				</div>
+			</form>
+			<div class="button-group">
+				<button mat-raised-button color="primary" matStepperPrevious>Vorige</button>
+				<button mat-raised-button color="primary" matStepperNext>Velgende</button>
 			</div>
-			<div *ngFor="let thing of things"
-						[ngClass]="{'active': isActive(1),
-											'welcome-step__block': !isActive(1) === true}"
-						(click)="setValue(thing.value)">
-						{{ thing.title }}
-			</div>
-			<button (click)="setSeller(true)">True!</button>
-			<button (click)="setSeller(false)">False!</button>
-			<button mat-raised-button color="primary" matStepperPrevious>Vorige</button>
-			<button mat-raised-button color="primary" matStepperNext>Velgende</button> -->
 		</mat-step>
-		<mat-step *ngIf="isSeller === false">
-			<p>False</p>
-		</mat-step>
-		<ng-container *ngIf="isSeller === true">
-			<mat-step>
-				<p>True</p>
-			</mat-step>
-			<mat-step>
-				<p>True again</p>
-			</mat-step>
-		</ng-container>
 	</mat-horizontal-stepper>
 </div>
